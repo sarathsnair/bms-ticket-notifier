@@ -485,6 +485,12 @@ def send_email(subject, changes, shows, movie_info):
                                     margin-top:16px;">
                             Checked at {now_str}
                         </div>
+                        <div style="font-size:11px;color:#64748b;
+                                    margin-top:6px;">
+                            Built by <a href="https://github.com/aviiciii"
+                            style="color:#1d4ed8;text-decoration:none;">aviiciii</a>
+                            with love for cinema
+                        </div>
                     </td>
                 </tr>
             </table>
