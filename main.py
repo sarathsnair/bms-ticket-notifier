@@ -34,6 +34,7 @@ RESEND_TO_EMAIL = os.getenv("RESEND_TO_EMAIL", "")
 RESEND_FROM_EMAIL = os.getenv("RESEND_FROM_EMAIL", "aviiciii@resend.dev")
 
 STATE_FILE = "bms_state.json"
+REGIONS_API = "https://in.bookmyshow.com/api/explore/v1/discover/regions"
 
 # ──────────────────────────────────────────────────────────────────────
 # CONSTANTS
@@ -121,7 +122,38 @@ def resolve_region(slug):
     key = (slug or "").lower().strip()
     if key in REGION_MAP:
         return REGION_MAP[key]
-    return (key.upper()[:6], key, "0", "0", "")
+        result = _fetch_region_from_api(key)
+        if result:
+          return result
+        return (key.upper()[:6], key, "0", "0", "")
+
+
+def _fetch_region_from_api(slug):                                                                                                   
+      key = slug.lower().strip()                                                                                                      
+      try:                                                                                                                            
+          resp = requests.get(REGIONS_API, headers={                                                                                  
+              "User-Agent": (                                                                                                         
+                  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "                                                                  
+                  "AppleWebKit/537.36 (KHTML, like Gecko) "                                                                           
+                  "Chrome/145.0.0.0 Safari/537.36"                                                                                    
+              ),                                                                                                                      
+          }, timeout=10)                                                                                                              
+          if resp.status_code != 200:                                                                                                 
+              return None                                                                                                             
+          bms = resp.json().get("BookMyShow", {})                                                                                     
+          for group in ("TopCities", "OtherCities"):                                                                                  
+              for city in bms.get(group, []):                                                                                         
+                  if city.get("RegionSlug", "").lower() == key:                                                                       
+                      return (                                                                                                        
+                          city["RegionCode"],                                                                                         
+                          city["RegionSlug"],                                                                                         
+                          city["Lat"],                                                                                                
+                          city["Long"],                                                                                               
+                          city.get("GeoHash", ""),                                                                                    
+                      )                                                                                                               
+      except (requests.RequestException, KeyError, ValueError):                                                                       
+          pass                                                                                                                        
+      return None
 
 
 # ──────────────────────────────────────────────────────────────────────
