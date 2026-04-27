@@ -122,10 +122,10 @@ def resolve_region(slug):
     key = (slug or "").lower().strip()
     if key in REGION_MAP:
         return REGION_MAP[key]
-        result = _fetch_region_from_api(key)
-        if result:
-          return result
-        return (key.upper()[:6], key, "0", "0", "")
+    result = _fetch_region_from_api(key)
+    if result:
+        return result
+    return (key.upper()[:6], key, "0", "0", "")
 
 
 def _fetch_region_from_api(slug):                                                                                                   
