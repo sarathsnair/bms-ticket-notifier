@@ -14,7 +14,7 @@
       "date": "20260516",
       "cat": "GOLD",
       "price": "150.00",
-      "status": "2"
+      "status": "1"
     },
     "UMSE|35215|20260516|PLATINUM": {
       "venue": "UGM Cinemas: Ettumanoor",
@@ -30,7 +30,7 @@
       "date": "20260516",
       "cat": "GOLD",
       "price": "150.00",
-      "status": "2"
+      "status": "1"
     }
   },
   "dates": {
