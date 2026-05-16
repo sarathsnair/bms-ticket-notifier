@@ -1,21 +1,5 @@
 {
   "shows": {
-    "UMSE|35214|20260516|PLATINUM": {
-      "venue": "UGM Cinemas: Ettumanoor",
-      "time": "06:15 PM",
-      "date": "20260516",
-      "cat": "PLATINUM",
-      "price": "250.00",
-      "status": "0"
-    },
-    "UMSE|35214|20260516|GOLD": {
-      "venue": "UGM Cinemas: Ettumanoor",
-      "time": "06:15 PM",
-      "date": "20260516",
-      "cat": "GOLD",
-      "price": "150.00",
-      "status": "2"
-    },
     "UMSE|35321|20260516|PLATINUM": {
       "venue": "UGM Cinemas: Ettumanoor",
       "time": "08:45 PM",
@@ -38,7 +22,7 @@
       "date": "20260516",
       "cat": "PLATINUM",
       "price": "250.00",
-      "status": "1"
+      "status": "0"
     },
     "UMSE|35215|20260516|GOLD": {
       "venue": "UGM Cinemas: Ettumanoor",
