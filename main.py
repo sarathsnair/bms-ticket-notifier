@@ -33,6 +33,9 @@ RESEND_API_KEY = os.getenv("RESEND_API_KEY", "")
 RESEND_TO_EMAIL = os.getenv("RESEND_TO_EMAIL", "")
 RESEND_FROM_EMAIL = os.getenv("RESEND_FROM_EMAIL", "aviiciii@resend.dev")
 
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
+
 STATE_FILE = "bms_state.json"
 REGIONS_API = "https://in.bookmyshow.com/api/explore/v1/discover/regions"
 
@@ -623,6 +626,31 @@ def send_email(subject, changes, shows, movie_info):
         return
 
 
+def send_telegram(text):
+    """Send a Telegram push message. No-op when unconfigured; never fatal."""
+    token = TELEGRAM_BOT_TOKEN.strip()
+    chat_id = TELEGRAM_CHAT_ID.strip()
+    if not token or not chat_id:
+        return
+    try:
+        resp = requests.post(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            json={
+                "chat_id": chat_id,
+                "text": text[:4000],  # stay under Telegram's 4096-char limit
+                "disable_web_page_preview": True,
+            },
+            timeout=15,
+        )
+        if resp.status_code == 200:
+            print("  ✅ Telegram sent")
+        else:
+            print(f"  ⚠️  Telegram {resp.status_code}: {resp.text}")
+    except requests.RequestException as e:
+        # never let the bot token leak into logs via the exception string
+        print(f"  ⚠️  Telegram failed: {str(e).replace(token, '***')}")
+
+
 # ──────────────────────────────────────────────────────────────────────
 # MAIN
 # ──────────────────────────────────────────────────────────────────────
@@ -741,6 +769,10 @@ def main():
             send_email(
                 f"BMS Alert: {movie_info['name']} - {len(changes)} change(s)",
                 changes, filtered, movie_info,
+            )
+            send_telegram(
+                f"🎬 {movie_info['name']} — {len(changes)} change(s)\n"
+                + "\n".join(changes[:20])
             )
         else:
             print("    ✅ No changes since last check.")
