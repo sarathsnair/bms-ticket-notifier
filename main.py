@@ -119,6 +119,18 @@ def parse_bms_url(url):
     return result
 
 
+def parse_watch_urls(raw, max_watches=3):
+    """Split the BMS_URL variable (one URL per line) into a capped list."""
+    urls = [u.strip() for u in (raw or "").splitlines() if u.strip()]
+    if len(urls) > max_watches:
+        print(
+            f"  ⚠️  {len(urls)} URLs configured; tracking first "
+            f"{max_watches}, ignoring {len(urls) - max_watches}."
+        )
+        urls = urls[:max_watches]
+    return urls
+
+
 def resolve_region(slug):
     key = (slug or "").lower().strip()
     if key in REGION_MAP:
@@ -339,6 +351,20 @@ def filter_shows(shows, theatre_filter, time_periods, date_codes):
     return result
 
 
+def sort_shows_by_priority(shows, theatre_filter):
+    """Order shows by BMS_THEATRE keyword rank (first keyword = highest)."""
+    kws = [k.strip().lower() for k in theatre_filter.split(",") if k.strip()]
+
+    def rank(s):
+        name = s.venue_name.lower()
+        for i, k in enumerate(kws):
+            if k in name:
+                return i
+        return len(kws)
+
+    return sorted(shows, key=rank)
+
+
 # ──────────────────────────────────────────────────────────────────────
 # STATE (for change detection between runs)
 # ──────────────────────────────────────────────────────────────────────
@@ -413,6 +439,18 @@ def detect_changes(old_state, new_state):
             )
 
     return changes
+
+
+def compute_movie_changes(old_state_all, event_code, new_movie_state):
+    """Detect changes for one movie against its slice of the keyed state.
+
+    Returns [] when there is no prior slice (fresh movie) or when the state
+    file is still in the legacy flat {"shows", "dates"} format.
+    """
+    old_movie_state = old_state_all.get(event_code)
+    if not isinstance(old_movie_state, dict) or "shows" not in old_movie_state:
+        return []
+    return detect_changes(old_movie_state, new_movie_state)
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -548,10 +586,10 @@ def send_email(subject, changes, shows, movie_info):
             print(f"  ✅ Email sent to {to}")
         else:
             print(f"  ❌ Resend {resp.status_code}: {resp.text}")
-            sys.exit(1)
+            return
     except requests.RequestException as e:
         print(f"  ❌ Email failed: {e}")
-        sys.exit(1)
+        return
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -561,97 +599,89 @@ def main():
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"[{now_str}] BMS Ticket Checker — CI mode")
 
-    # Parse config
-    parsed = parse_bms_url(CONFIG["url"])
-    event_code = parsed["event_code"]
-    region_slug = parsed["region_slug"]
-    url_date = parsed.get("date_code", "")
-
-    if not event_code or not region_slug:
-        print("  ❌ Invalid BMS_URL. Could not extract event/region.")
+    urls = parse_watch_urls(CONFIG["url"])
+    if not urls:
+        print("  ❌ No BMS_URL configured.")
         sys.exit(1)
+    print(f"  Tracking {len(urls)} movie(s)")
 
-    region_code, region_slug_r, lat, lon, geohash = resolve_region(
-        region_slug
-    )
+    old_state_all = load_state()
+    new_state_all = {}
+    total_changes = 0
 
-    # Determine dates to check
-    raw_dates = CONFIG["dates"].strip()
-    if raw_dates:
-        date_list = [d.strip() for d in raw_dates.split(",") if d.strip()]
-    elif url_date:
-        date_list = [url_date]
-    else:
-        date_list = [""]
+    for url in urls:
+        parsed = parse_bms_url(url)
+        event_code = parsed["event_code"]
+        region_slug = parsed["region_slug"]
+        url_date = parsed.get("date_code", "")
 
-    print(f"  Event: {event_code}  Region: {region_code}  "
-          f"Dates: {date_list}")
-
-    # Fetch data for each date
-    all_shows = []
-    all_dates = []
-    movie_info = {"name": "Unknown", "language": ""}
-
-    for dc in date_list:
-        data = fetch_bms(event_code, dc, region_code,
-                         region_slug_r, lat, lon, geohash)
-        if not data:
-            print(f"  ⚠️  No data for date {dc or '(default)'}")
+        if not event_code or not region_slug:
+            print(f"  ⚠️  Skipping invalid URL: {url}")
             continue
 
-        if movie_info["name"] == "Unknown":
-            movie_info = parse_movie_info(data)
+        region_code, region_slug_r, lat, lon, geohash = resolve_region(region_slug)
 
-        all_dates.extend(parse_dates(data))
-        all_shows.extend(parse_shows(data))
+        raw_dates = CONFIG["dates"].strip()
+        if raw_dates:
+            date_list = [d.strip() for d in raw_dates.split(",") if d.strip()]
+        elif url_date:
+            date_list = [url_date]
+        else:
+            date_list = [""]
 
-    if not all_shows:
-        print("  ❌ No showtimes found.")
-        sys.exit(0)
+        print(f"\n  ▶ {event_code}  Region: {region_code}  Dates: {date_list}")
 
-    print(f"  🎬 {movie_info['name']}  {movie_info['language']}")
+        all_shows = []
+        all_dates = []
+        movie_info = {"name": "Unknown", "language": ""}
 
-    # Apply filters
-    filtered = filter_shows(
-        all_shows,
-        CONFIG["theatre"],
-        CONFIG["time_period"],
-        CONFIG["dates"],
-    )
-    print(f"  📊 {len(filtered)} showtime(s) after filters")
+        for dc in date_list:
+            data = fetch_bms(event_code, dc, region_code,
+                             region_slug_r, lat, lon, geohash)
+            if not data:
+                print(f"    ⚠️  No data for date {dc or '(default)'}")
+                continue
+            if movie_info["name"] == "Unknown":
+                movie_info = parse_movie_info(data)
+            all_dates.extend(parse_dates(data))
+            all_shows.extend(parse_shows(data))
 
-    # Build state & detect changes
-    new_state = build_state(filtered, all_dates)
-    old_state = load_state()
+        if not all_shows:
+            print("    ❌ No showtimes found.")
+            if event_code in old_state_all:
+                new_state_all[event_code] = old_state_all[event_code]
+                print("    ↪ Keeping previous state (no data this run).")
+            continue
 
-    changes = []
-    if old_state:
-        changes = detect_changes(old_state, new_state)
-
-    save_state(new_state)
-
-    if changes:
-        print(f"\n  ⚡ {len(changes)} change(s) detected:")
-        for c in changes:
-            print(f"     {c}")
-        send_email(
-            f"BMS Alert: {movie_info['name']} - {len(changes)} change(s)",
-            changes, filtered, movie_info,
+        filtered = filter_shows(
+            all_shows, CONFIG["theatre"], CONFIG["time_period"], CONFIG["dates"],
         )
+        filtered = sort_shows_by_priority(filtered, CONFIG["theatre"])
+        print(f"    🎬 {movie_info['name']} {movie_info['language']} "
+              f"— {len(filtered)} show(s) after filters")
+
+        new_movie_state = build_state(filtered, all_dates)
+        new_state_all[event_code] = new_movie_state
+
+        changes = compute_movie_changes(old_state_all, event_code, new_movie_state)
+        if changes:
+            total_changes += len(changes)
+            print(f"    ⚡ {len(changes)} change(s):")
+            for c in changes:
+                print(f"       {c}")
+            send_email(
+                f"BMS Alert: {movie_info['name']} - {len(changes)} change(s)",
+                changes, filtered, movie_info,
+            )
+        else:
+            print("    ✅ No changes since last check.")
+
+    if new_state_all:
+        save_state(new_state_all)
     else:
-        print("  ✅ No changes since last check.")
-
-    # Print current status
-    print(f"\n  Current status ({len(filtered)} shows):")
-    for s in filtered:
-        cats = ", ".join(
-            f"{c.name}=₹{c.price}({AVAIL_STATUS_MAP.get(c.status, ('?',''))[0]})"
-            for c in s.categories
-        )
-        fmt = f"|{s.screen_attr}" if s.screen_attr else ""
-        print(f"    {s.venue_name} — {s.time}{fmt} [{s.date_code}] — {cats}")
-
-    print("\n  Done.")
+        print("  ⚠️  No data for any configured movie; "
+              "leaving bms_state.json unchanged.")
+    print(f"\n  Done. {total_changes} total change(s) across {len(urls)} movie(s).")
 
 
 if __name__ == "__main__":
