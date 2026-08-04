@@ -119,6 +119,37 @@ def parse_bms_url(url):
     return result
 
 
+def parse_date_range(raw):
+    """Parse a single inclusive BMS_DATES range 'YYYYMMDD-YYYYMMDD'.
+
+    Returns (start, end), or None when the value is not a well-formed range
+    (None means the caller uses the legacy comma/single-date path).
+    """
+    s = (raw or "").strip()
+    if not re.match(r"^\d{8}-\d{8}$", s):
+        return None
+    start, end = s.split("-")
+    try:
+        datetime.strptime(start, "%Y%m%d")
+        datetime.strptime(end, "%Y%m%d")
+    except ValueError:
+        print(f"  ⚠️  Invalid date in BMS_DATES range '{s}'; ignoring range.")
+        return None
+    if start > end:
+        print(f"  ⚠️  BMS_DATES range start after end ('{s}'); ignoring range.")
+        return None
+    return (start, end)
+
+
+def resolve_fetch_dates(start, end, advertised):
+    """Advertised dates within [start, end] that are open (bookable/available)."""
+    open_codes = {
+        d.date_code for d in advertised
+        if start <= d.date_code <= end and d.status in ("BOOKABLE", "AVAILABLE")
+    }
+    return sorted(open_codes)
+
+
 def parse_watch_urls(raw, max_watches=3):
     """Split the BMS_URL variable (one URL per line) into a capped list."""
     urls = [u.strip() for u in (raw or "").splitlines() if u.strip()]
@@ -621,40 +652,78 @@ def main():
 
         region_code, region_slug_r, lat, lon, geohash = resolve_region(region_slug)
 
-        raw_dates = CONFIG["dates"].strip()
-        if raw_dates:
-            date_list = [d.strip() for d in raw_dates.split(",") if d.strip()]
-        elif url_date:
-            date_list = [url_date]
-        else:
-            date_list = [""]
-
-        print(f"\n  ▶ {event_code}  Region: {region_code}  Dates: {date_list}")
-
         all_shows = []
         all_dates = []
         movie_info = {"name": "Unknown", "language": ""}
+        date_range = parse_date_range(CONFIG["dates"])
 
-        for dc in date_list:
-            data = fetch_bms(event_code, dc, region_code,
-                             region_slug_r, lat, lon, geohash)
-            if not data:
-                print(f"    ⚠️  No data for date {dc or '(default)'}")
+        if date_range:
+            start, end = date_range
+            print(f"\n  ▶ {event_code}  Region: {region_code}  "
+                  f"Range: {start}-{end}")
+            data0 = fetch_bms(event_code, "", region_code,
+                              region_slug_r, lat, lon, geohash)
+            if not data0:
+                print("    ⚠️  No data (discovery fetch failed).")
+                if event_code in old_state_all:
+                    new_state_all[event_code] = old_state_all[event_code]
+                    print("    ↪ Keeping previous state (no data this run).")
                 continue
-            if movie_info["name"] == "Unknown":
-                movie_info = parse_movie_info(data)
-            all_dates.extend(parse_dates(data))
-            all_shows.extend(parse_shows(data))
+            movie_info = parse_movie_info(data0)
+            advertised = parse_dates(data0)
+            all_dates = [d for d in advertised
+                         if start <= d.date_code <= end]
+            fetch_dates = resolve_fetch_dates(start, end, advertised)
+            print(f"    Open dates in window: {fetch_dates or 'none yet'}")
+            for dc in fetch_dates:
+                data = fetch_bms(event_code, dc, region_code,
+                                 region_slug_r, lat, lon, geohash)
+                if data:
+                    all_shows.extend(parse_shows(data))
 
-        if not all_shows:
-            print("    ❌ No showtimes found.")
-            if event_code in old_state_all:
-                new_state_all[event_code] = old_state_all[event_code]
-                print("    ↪ Keeping previous state (no data this run).")
-            continue
+            # Range mode records the window's date strip even with zero shows
+            # (so a future date opening is detected); only skip if the strip
+            # is empty too, to avoid clobbering good state on a transient blip.
+            if not all_shows and not all_dates:
+                print("    ❌ No shows or in-window dates.")
+                if event_code in old_state_all:
+                    new_state_all[event_code] = old_state_all[event_code]
+                    print("    ↪ Keeping previous state (no data this run).")
+                continue
+            date_filter = ",".join(fetch_dates)
+        else:
+            raw_dates = CONFIG["dates"].strip()
+            if raw_dates:
+                date_list = [d.strip() for d in raw_dates.split(",") if d.strip()]
+            elif url_date:
+                date_list = [url_date]
+            else:
+                date_list = [""]
+
+            print(f"\n  ▶ {event_code}  Region: {region_code}  "
+                  f"Dates: {date_list}")
+
+            for dc in date_list:
+                data = fetch_bms(event_code, dc, region_code,
+                                 region_slug_r, lat, lon, geohash)
+                if not data:
+                    print(f"    ⚠️  No data for date {dc or '(default)'}")
+                    continue
+                if movie_info["name"] == "Unknown":
+                    movie_info = parse_movie_info(data)
+                all_dates.extend(parse_dates(data))
+                all_shows.extend(parse_shows(data))
+
+            if not all_shows:
+                print("    ❌ No showtimes found.")
+                if event_code in old_state_all:
+                    new_state_all[event_code] = old_state_all[event_code]
+                    print("    ↪ Keeping previous state (no data this run).")
+                continue
+            date_filter = CONFIG["dates"]
 
         filtered = filter_shows(
-            all_shows, CONFIG["theatre"], CONFIG["time_period"], CONFIG["dates"],
+            all_shows, CONFIG["theatre"], CONFIG["time_period"], date_filter,
         )
         filtered = sort_shows_by_priority(filtered, CONFIG["theatre"])
         print(f"    🎬 {movie_info['name']} {movie_info['language']} "

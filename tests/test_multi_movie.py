@@ -118,3 +118,44 @@ class SendEmailNonFatal(unittest.TestCase):
              mock.patch.object(main.requests, "post",
                                side_effect=main.requests.RequestException("boom")):
             main.send_email("subj", ["change"], [], {"name": "Movie"})
+
+
+class ParseDateRange(unittest.TestCase):
+    def test_valid_range(self):
+        self.assertEqual(main.parse_date_range("20260805-20260812"), ("20260805", "20260812"))
+    def test_same_day_range_ok(self):
+        self.assertEqual(main.parse_date_range("20260805-20260805"), ("20260805", "20260805"))
+    def test_comma_list_is_not_range(self):
+        self.assertIsNone(main.parse_date_range("20260805,20260830"))
+    def test_single_date_is_not_range(self):
+        self.assertIsNone(main.parse_date_range("20260805"))
+    def test_empty_and_none(self):
+        self.assertIsNone(main.parse_date_range(""))
+        self.assertIsNone(main.parse_date_range(None))
+    def test_invalid_calendar_date(self):
+        self.assertIsNone(main.parse_date_range("20261305-20261320"))
+    def test_start_after_end(self):
+        self.assertIsNone(main.parse_date_range("20260830-20260805"))
+
+
+class ResolveFetchDates(unittest.TestCase):
+    def _adv(self, pairs):
+        from main import DateInfo
+        return [DateInfo(date_code=c, status=s) for c, s in pairs]
+    def test_only_open_dates_in_window_sorted(self):
+        adv = self._adv([
+            ("20260804", "AVAILABLE"), ("20260805", "BOOKABLE"),
+            ("20260806", "NOT_OPEN"), ("20260813", "AVAILABLE"),
+        ])
+        self.assertEqual(main.resolve_fetch_dates("20260805", "20260810", adv),
+                         ["20260805"])
+    def test_excludes_not_open(self):
+        adv = self._adv([("20260805", "NOT_OPEN")])
+        self.assertEqual(main.resolve_fetch_dates("20260801", "20260831", adv), [])
+    def test_dedup_and_sort(self):
+        adv = self._adv([("20260807", "AVAILABLE"), ("20260806", "BOOKABLE"),
+                         ("20260807", "AVAILABLE")])
+        self.assertEqual(main.resolve_fetch_dates("20260801", "20260831", adv),
+                         ["20260806", "20260807"])
+    def test_empty_advertised(self):
+        self.assertEqual(main.resolve_fetch_dates("20260801", "20260831", []), [])
