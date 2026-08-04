@@ -112,11 +112,74 @@
         "cat": "GOLD+3D",
         "price": "180.00",
         "status": "3"
+      },
+      "GWEK|6669|20260806|RECLINER+3D": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "01:00 PM",
+        "date": "20260806",
+        "cat": "RECLINER+3D",
+        "price": "330.00",
+        "status": "3"
+      },
+      "GWEK|6669|20260806|GOLD+3D": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "01:00 PM",
+        "date": "20260806",
+        "cat": "GOLD+3D",
+        "price": "180.00",
+        "status": "3"
+      },
+      "GWEK|6670|20260806|RECLINER+3D": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "04:00 PM",
+        "date": "20260806",
+        "cat": "RECLINER+3D",
+        "price": "330.00",
+        "status": "3"
+      },
+      "GWEK|6670|20260806|GOLD+3D": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "04:00 PM",
+        "date": "20260806",
+        "cat": "GOLD+3D",
+        "price": "180.00",
+        "status": "3"
+      },
+      "GWEK|6671|20260806|RECLINER+3D": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "07:00 PM",
+        "date": "20260806",
+        "cat": "RECLINER+3D",
+        "price": "330.00",
+        "status": "3"
+      },
+      "GWEK|6671|20260806|GOLD+3D": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "07:00 PM",
+        "date": "20260806",
+        "cat": "GOLD+3D",
+        "price": "180.00",
+        "status": "3"
+      },
+      "GWEK|6672|20260806|RECLINER+3D": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "10:00 PM",
+        "date": "20260806",
+        "cat": "RECLINER+3D",
+        "price": "330.00",
+        "status": "3"
+      },
+      "GWEK|6672|20260806|GOLD+3D": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "10:00 PM",
+        "date": "20260806",
+        "cat": "GOLD+3D",
+        "price": "180.00",
+        "status": "3"
       }
     },
     "dates": {
-      "20260804": "AVAILABLE",
-      "20260805": "BOOKABLE",
+      "20260805": "AVAILABLE",
       "20260806": "AVAILABLE",
       "20260807": "AVAILABLE",
       "20260808": "AVAILABLE",
