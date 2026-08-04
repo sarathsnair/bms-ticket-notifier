@@ -159,3 +159,42 @@ class ResolveFetchDates(unittest.TestCase):
                          ["20260806", "20260807"])
     def test_empty_advertised(self):
         self.assertEqual(main.resolve_fetch_dates("20260801", "20260831", []), [])
+
+
+class SendTelegram(unittest.TestCase):
+    def test_skips_when_unconfigured(self):
+        called = []
+        with mock.patch.object(main, "TELEGRAM_BOT_TOKEN", ""), \
+             mock.patch.object(main, "TELEGRAM_CHAT_ID", ""), \
+             mock.patch.object(main.requests, "post",
+                               side_effect=lambda *a, **k: called.append(1)):
+            main.send_telegram("hello")
+        self.assertEqual(called, [], "must not POST when unconfigured")
+
+    def test_posts_message_when_configured(self):
+        captured = {}
+        def fake_post(url, **kw):
+            captured["url"] = url
+            captured["json"] = kw.get("json")
+            return mock.Mock(status_code=200)
+        with mock.patch.object(main, "TELEGRAM_BOT_TOKEN", "Tok:123"), \
+             mock.patch.object(main, "TELEGRAM_CHAT_ID", "999"), \
+             mock.patch.object(main.requests, "post", fake_post):
+            main.send_telegram("hello world")
+        self.assertIn("botTok:123/sendMessage", captured["url"])
+        self.assertEqual(captured["json"]["chat_id"], "999")
+        self.assertEqual(captured["json"]["text"], "hello world")
+
+    def test_nonfatal_on_http_error(self):
+        with mock.patch.object(main, "TELEGRAM_BOT_TOKEN", "T"), \
+             mock.patch.object(main, "TELEGRAM_CHAT_ID", "9"), \
+             mock.patch.object(main.requests, "post",
+                               return_value=mock.Mock(status_code=400, text="bad")):
+            main.send_telegram("x")  # must return, not raise
+
+    def test_nonfatal_on_exception(self):
+        with mock.patch.object(main, "TELEGRAM_BOT_TOKEN", "T"), \
+             mock.patch.object(main, "TELEGRAM_CHAT_ID", "9"), \
+             mock.patch.object(main.requests, "post",
+                               side_effect=main.requests.RequestException("boom")):
+            main.send_telegram("x")  # must return, not raise
