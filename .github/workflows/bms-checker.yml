@@ -1,10 +1,10 @@
 name: BMS Ticket Checker
 
 on:
-  schedule:
-    # Every 15 minutes
-    - cron: '*/15 * * * *'
-  workflow_dispatch:  # Manual trigger button
+  # Triggered externally by cron-job.org every 15 min via the workflow_dispatch API.
+  # GitHub's own `schedule:` cron is best-effort and heavily throttles high-frequency
+  # crons (*/15 was firing ~hourly with dropped runs), so we drive it externally.
+  workflow_dispatch:  # Manual button + external API trigger
 
 jobs:
   check-tickets:
