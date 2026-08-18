@@ -1,71 +1,6 @@
 {
   "ET00467751": {
-    "shows": {
-      "UMSE|37089|20260821|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "01:45 PM",
-        "date": "20260821",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "3"
-      },
-      "UMSE|37089|20260821|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "01:45 PM",
-        "date": "20260821",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "UMSE|37090|20260821|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "05:00 PM",
-        "date": "20260821",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "3"
-      },
-      "UMSE|37090|20260821|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "05:00 PM",
-        "date": "20260821",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "UMSE|37091|20260821|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "08:15 PM",
-        "date": "20260821",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "2"
-      },
-      "UMSE|37091|20260821|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "08:15 PM",
-        "date": "20260821",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "UMSE|37092|20260821|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "11:30 PM",
-        "date": "20260821",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "3"
-      },
-      "UMSE|37092|20260821|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "11:30 PM",
-        "date": "20260821",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      }
-    },
+    "shows": {},
     "dates": {
       "20260820": "BOOKABLE",
       "20260821": "AVAILABLE",
@@ -77,15 +12,80 @@
     }
   },
   "ET00502829": {
-    "shows": {},
+    "shows": {
+      "GWEK|6965|20260821|RECLINER": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "12:15 PM",
+        "date": "20260821",
+        "cat": "RECLINER",
+        "price": "300.00",
+        "status": "3"
+      },
+      "GWEK|6965|20260821|GOLD": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "12:15 PM",
+        "date": "20260821",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "3"
+      },
+      "GWEK|6966|20260821|RECLINER": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "03:30 PM",
+        "date": "20260821",
+        "cat": "RECLINER",
+        "price": "300.00",
+        "status": "3"
+      },
+      "GWEK|6966|20260821|GOLD": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "03:30 PM",
+        "date": "20260821",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "3"
+      },
+      "GWEK|6967|20260821|RECLINER": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "06:45 PM",
+        "date": "20260821",
+        "cat": "RECLINER",
+        "price": "300.00",
+        "status": "3"
+      },
+      "GWEK|6967|20260821|GOLD": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "06:45 PM",
+        "date": "20260821",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "3"
+      },
+      "GWEK|6968|20260821|RECLINER": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "10:00 PM",
+        "date": "20260821",
+        "cat": "RECLINER",
+        "price": "300.00",
+        "status": "3"
+      },
+      "GWEK|6968|20260821|GOLD": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "10:00 PM",
+        "date": "20260821",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "3"
+      }
+    },
     "dates": {
-      "20260818": "NOT_OPEN",
-      "20260819": "NOT_OPEN",
-      "20260820": "NOT_OPEN",
-      "20260821": "NOT_OPEN",
+      "20260821": "BOOKABLE",
       "20260822": "NOT_OPEN",
       "20260823": "NOT_OPEN",
-      "20260824": "NOT_OPEN"
+      "20260824": "NOT_OPEN",
+      "20260825": "NOT_OPEN",
+      "20260826": "NOT_OPEN",
+      "20260827": "NOT_OPEN"
     }
   }
 }
