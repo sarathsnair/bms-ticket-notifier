@@ -365,7 +365,72 @@
     }
   },
   "ET00502829": {
-    "shows": {},
+    "shows": {
+      "GWEK|6994|20260823|RECLINER": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "12:15 PM",
+        "date": "20260823",
+        "cat": "RECLINER",
+        "price": "300.00",
+        "status": "3"
+      },
+      "GWEK|6994|20260823|GOLD": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "12:15 PM",
+        "date": "20260823",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "3"
+      },
+      "GWEK|6995|20260823|RECLINER": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "03:30 PM",
+        "date": "20260823",
+        "cat": "RECLINER",
+        "price": "300.00",
+        "status": "3"
+      },
+      "GWEK|6995|20260823|GOLD": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "03:30 PM",
+        "date": "20260823",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "3"
+      },
+      "GWEK|6996|20260823|RECLINER": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "06:45 PM",
+        "date": "20260823",
+        "cat": "RECLINER",
+        "price": "300.00",
+        "status": "2"
+      },
+      "GWEK|6996|20260823|GOLD": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "06:45 PM",
+        "date": "20260823",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "3"
+      },
+      "GWEK|6997|20260823|RECLINER": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "10:00 PM",
+        "date": "20260823",
+        "cat": "RECLINER",
+        "price": "300.00",
+        "status": "3"
+      },
+      "GWEK|6997|20260823|GOLD": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "10:00 PM",
+        "date": "20260823",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "3"
+      }
+    },
     "dates": {
       "20260821": "BOOKABLE",
       "20260822": "AVAILABLE",
