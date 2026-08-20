@@ -65,54 +65,6 @@
         "price": "150.00",
         "status": "3"
       },
-      "UMSE|37172|20260822|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "01:45 PM",
-        "date": "20260822",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "3"
-      },
-      "UMSE|37172|20260822|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "01:45 PM",
-        "date": "20260822",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "UMSE|37173|20260822|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "05:00 PM",
-        "date": "20260822",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "3"
-      },
-      "UMSE|37173|20260822|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "05:00 PM",
-        "date": "20260822",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "UMSE|37174|20260822|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "08:15 PM",
-        "date": "20260822",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "3"
-      },
-      "UMSE|37174|20260822|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "08:15 PM",
-        "date": "20260822",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
       "GWEK|6948|20260821|RECLINER": {
         "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
         "time": "04:00 PM",
@@ -157,70 +109,6 @@
         "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
         "time": "10:30 PM",
         "date": "20260821",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "GWEK|6987|20260822|RECLINER": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "12:45 PM",
-        "date": "20260822",
-        "cat": "RECLINER",
-        "price": "300.00",
-        "status": "3"
-      },
-      "GWEK|6987|20260822|GOLD": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "12:45 PM",
-        "date": "20260822",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "GWEK|6989|20260822|RECLINER": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "04:00 PM",
-        "date": "20260822",
-        "cat": "RECLINER",
-        "price": "300.00",
-        "status": "3"
-      },
-      "GWEK|6989|20260822|GOLD": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "04:00 PM",
-        "date": "20260822",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "GWEK|6988|20260822|RECLINER": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "07:15 PM",
-        "date": "20260822",
-        "cat": "RECLINER",
-        "price": "300.00",
-        "status": "3"
-      },
-      "GWEK|6988|20260822|GOLD": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "07:15 PM",
-        "date": "20260822",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "GWEK|6985|20260822|RECLINER": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "10:30 PM",
-        "date": "20260822",
-        "cat": "RECLINER",
-        "price": "300.00",
-        "status": "3"
-      },
-      "GWEK|6985|20260822|GOLD": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "10:30 PM",
-        "date": "20260822",
         "cat": "GOLD",
         "price": "150.00",
         "status": "3"
@@ -634,70 +522,6 @@
         "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
         "time": "10:00 PM",
         "date": "20260822",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "GWEK|6994|20260823|RECLINER": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "12:15 PM",
-        "date": "20260823",
-        "cat": "RECLINER",
-        "price": "300.00",
-        "status": "3"
-      },
-      "GWEK|6994|20260823|GOLD": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "12:15 PM",
-        "date": "20260823",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "GWEK|6995|20260823|RECLINER": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "03:30 PM",
-        "date": "20260823",
-        "cat": "RECLINER",
-        "price": "300.00",
-        "status": "3"
-      },
-      "GWEK|6995|20260823|GOLD": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "03:30 PM",
-        "date": "20260823",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "GWEK|6996|20260823|RECLINER": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "06:45 PM",
-        "date": "20260823",
-        "cat": "RECLINER",
-        "price": "300.00",
-        "status": "1"
-      },
-      "GWEK|6996|20260823|GOLD": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "06:45 PM",
-        "date": "20260823",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "GWEK|6997|20260823|RECLINER": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "10:00 PM",
-        "date": "20260823",
-        "cat": "RECLINER",
-        "price": "300.00",
-        "status": "3"
-      },
-      "GWEK|6997|20260823|GOLD": {
-        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
-        "time": "10:00 PM",
-        "date": "20260823",
         "cat": "GOLD",
         "price": "150.00",
         "status": "3"
