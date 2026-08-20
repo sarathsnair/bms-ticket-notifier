@@ -416,6 +416,70 @@
         "cat": "GOLD",
         "price": "150.00",
         "status": "3"
+      },
+      "GWEK|6999|20260823|RECLINER": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "12:45 PM",
+        "date": "20260823",
+        "cat": "RECLINER",
+        "price": "300.00",
+        "status": "3"
+      },
+      "GWEK|6999|20260823|GOLD": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "12:45 PM",
+        "date": "20260823",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "3"
+      },
+      "GWEK|7000|20260823|RECLINER": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "04:00 PM",
+        "date": "20260823",
+        "cat": "RECLINER",
+        "price": "300.00",
+        "status": "3"
+      },
+      "GWEK|7000|20260823|GOLD": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "04:00 PM",
+        "date": "20260823",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "3"
+      },
+      "GWEK|7001|20260823|RECLINER": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "07:15 PM",
+        "date": "20260823",
+        "cat": "RECLINER",
+        "price": "300.00",
+        "status": "3"
+      },
+      "GWEK|7001|20260823|GOLD": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "07:15 PM",
+        "date": "20260823",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "3"
+      },
+      "GWEK|7002|20260823|RECLINER": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "10:30 PM",
+        "date": "20260823",
+        "cat": "RECLINER",
+        "price": "300.00",
+        "status": "3"
+      },
+      "GWEK|7002|20260823|GOLD": {
+        "venue": "Goodwill Cinemas 4K RGB LASER Atmos 3D: Kallara",
+        "time": "10:30 PM",
+        "date": "20260823",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "3"
       }
     },
     "dates": {
