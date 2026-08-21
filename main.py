@@ -385,6 +385,15 @@ def filter_shows(shows, theatre_filter, time_periods, date_codes):
     return result
 
 
+def format_date_code(date_code):
+    """'20260821' -> '21-08-2026 (Friday)'; returns input unchanged if unparsable."""
+    try:
+        d = datetime.strptime(date_code, "%Y%m%d")
+    except (ValueError, TypeError):
+        return date_code
+    return d.strftime("%d-%m-%Y (%A)")
+
+
 def sort_shows_by_priority(shows, theatre_filter):
     """Order shows by BMS_THEATRE keyword rank (first keyword = highest)."""
     kws = [k.strip().lower() for k in theatre_filter.split(",") if k.strip()]
@@ -447,7 +456,7 @@ def detect_changes(old_state, new_state):
         old_status = old_dates.get(dc)
         if (old_status == "NOT_OPEN"
                 and status in ("BOOKABLE", "AVAILABLE")):
-            changes.append(f"📅 NEW DATE OPENED: {dc}")
+            changes.append(f"📅 NEW DATE OPENED: {format_date_code(dc)}")
 
     old_shows = old_state.get("shows", {})
     new_shows = new_state.get("shows", {})
@@ -456,7 +465,7 @@ def detect_changes(old_state, new_state):
     for key in set(new_shows) - set(old_shows):
         s = new_shows[key]
         changes.append(
-            f"🆕 NEW: {s['venue']} {s['time']} [{s['date']}] "
+            f"🆕 NEW: {s['venue']} {s['time']} [{format_date_code(s['date'])}] "
             f"— {s['cat']} ₹{s['price']}"
         )
 
@@ -469,7 +478,7 @@ def detect_changes(old_state, new_state):
             )
             changes.append(
                 f"{ico} BACK: {new_s['venue']} {new_s['time']} "
-                f"[{new_s['date']}] — {new_s['cat']} → {lbl}"
+                f"[{format_date_code(new_s['date'])}] — {new_s['cat']} → {lbl}"
             )
 
     return changes
@@ -539,6 +548,9 @@ def send_email(subject, changes, shows, movie_info):
                 f'<tr>'
                 f'<td style="padding:5px 8px;border-bottom:1px solid #ddd;'
                 f'font-size:13px;vertical-align:top;">'
+                f'{escape(format_date_code(s.date_code))}</td>'
+                f'<td style="padding:5px 8px;border-bottom:1px solid #ddd;'
+                f'font-size:13px;vertical-align:top;">'
                 f'{escape(s.time)}{fmt}</td>'
                 f'<td style="padding:5px 8px;border-bottom:1px solid #ddd;'
                 f'font-size:13px;vertical-align:top;">'
@@ -552,6 +564,8 @@ def send_email(subject, changes, shows, movie_info):
         </p>
         <table style="width:100%;border-collapse:collapse;font-size:13px;">
             <tr style="background:#f5f5f5;">
+                <th style="padding:5px 8px;text-align:left;border-bottom:1px solid #ddd;
+                           font-weight:bold;">Date</th>
                 <th style="padding:5px 8px;text-align:left;border-bottom:1px solid #ddd;
                            font-weight:bold;">Time</th>
                 <th style="padding:5px 8px;text-align:left;border-bottom:1px solid #ddd;
@@ -598,7 +612,9 @@ def send_email(subject, changes, shows, movie_info):
                 for c in s.categories
             )
             fmt = f" [{s.screen_attr}]" if s.screen_attr else ""
-            plain_lines.append(f"  {s.time}{fmt} - {cats}")
+            plain_lines.append(
+                f"  {format_date_code(s.date_code)} {s.time}{fmt} - {cats}"
+            )
     plain_lines.extend(["", "This is an automated alert from BMS Ticket Notifier."])
     plain = "\n".join(plain_lines)
 
