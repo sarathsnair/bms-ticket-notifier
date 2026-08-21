@@ -270,12 +270,12 @@ def parse_movie_info(data):
                     for c in row.get("components", []):
                         if "•" in c.get("text", ""):
                             info["language"] = c["text"].strip()
-    bs = data.get("data", {}).get("bottomSheetData", {})
-    for w in bs.get("format-selector", {}).get("widgets", []):
-        if w.get("type") == "vertical-text-list":
-            for d in w.get("data", []):
-                if d.get("styleId") == "bottomsheet-subtitle":
-                    info["name"] = d.get("text", info["name"])
+    header_title = data.get("data", {}).get("header", {}).get("title", {})
+    name = header_title.get("text") if isinstance(header_title, dict) else None
+    if not name:
+        name = data.get("metadata", {}).get("analytics", {}).get("title")
+    if name:
+        info["name"] = name
     return info
 
 
