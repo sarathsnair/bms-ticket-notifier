@@ -1,69 +1,101 @@
 {
   "ET00502829": {
     "shows": {
-      "UMSE|37200|20260824|PLATINUM": {
+      "UMSE|37169|20260823|PLATINUM": {
         "venue": "UGM Cinemas: Ettumanoor",
         "time": "01:30 PM",
-        "date": "20260824",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "1"
-      },
-      "UMSE|37200|20260824|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "01:30 PM",
-        "date": "20260824",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "2"
-      },
-      "UMSE|37201|20260824|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "04:45 PM",
-        "date": "20260824",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "1"
-      },
-      "UMSE|37201|20260824|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "04:45 PM",
-        "date": "20260824",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "2"
-      },
-      "UMSE|37202|20260824|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "08:00 PM",
-        "date": "20260824",
+        "date": "20260823",
         "cat": "PLATINUM",
         "price": "250.00",
         "status": "0"
       },
-      "UMSE|37202|20260824|GOLD": {
+      "UMSE|37169|20260823|GOLD": {
         "venue": "UGM Cinemas: Ettumanoor",
-        "time": "08:00 PM",
-        "date": "20260824",
+        "time": "01:30 PM",
+        "date": "20260823",
         "cat": "GOLD",
         "price": "150.00",
-        "status": "2"
+        "status": "1"
       },
-      "UMSE|37203|20260824|PLATINUM": {
+      "UMSE|37164|20260823|PLATINUM": {
         "venue": "UGM Cinemas: Ettumanoor",
-        "time": "11:15 PM",
-        "date": "20260824",
+        "time": "04:45 PM",
+        "date": "20260823",
         "cat": "PLATINUM",
         "price": "250.00",
-        "status": "2"
+        "status": "0"
       },
-      "UMSE|37203|20260824|GOLD": {
+      "UMSE|37164|20260823|GOLD": {
         "venue": "UGM Cinemas: Ettumanoor",
-        "time": "11:15 PM",
-        "date": "20260824",
+        "time": "04:45 PM",
+        "date": "20260823",
         "cat": "GOLD",
         "price": "150.00",
-        "status": "3"
+        "status": "1"
+      },
+      "UMSE|37162|20260823|PLATINUM": {
+        "venue": "UGM Cinemas: Ettumanoor",
+        "time": "08:15 PM",
+        "date": "20260823",
+        "cat": "PLATINUM",
+        "price": "250.00",
+        "status": "0"
+      },
+      "UMSE|37162|20260823|GOLD": {
+        "venue": "UGM Cinemas: Ettumanoor",
+        "time": "08:15 PM",
+        "date": "20260823",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "1"
+      },
+      "UMSE|37194|20260823|PLATINUM": {
+        "venue": "UGM Cinemas: Ettumanoor",
+        "time": "10:00 PM",
+        "date": "20260823",
+        "cat": "PLATINUM",
+        "price": "250.00",
+        "status": "1"
+      },
+      "UMSE|37194|20260823|GOLD": {
+        "venue": "UGM Cinemas: Ettumanoor",
+        "time": "10:00 PM",
+        "date": "20260823",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "2"
+      },
+      "UMSE|37210|20260823|PLATINUM": {
+        "venue": "UGM Cinemas: Ettumanoor",
+        "time": "11:15 PM",
+        "date": "20260823",
+        "cat": "PLATINUM",
+        "price": "250.00",
+        "status": "0"
+      },
+      "UMSE|37210|20260823|GOLD": {
+        "venue": "UGM Cinemas: Ettumanoor",
+        "time": "11:15 PM",
+        "date": "20260823",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "2"
+      },
+      "UMSE|37166|20260823|PLATINUM": {
+        "venue": "UGM Cinemas: Ettumanoor",
+        "time": "11:30 PM",
+        "date": "20260823",
+        "cat": "PLATINUM",
+        "price": "250.00",
+        "status": "0"
+      },
+      "UMSE|37166|20260823|GOLD": {
+        "venue": "UGM Cinemas: Ettumanoor",
+        "time": "11:30 PM",
+        "date": "20260823",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "2"
       }
     },
     "dates": {
