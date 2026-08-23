@@ -1,101 +1,69 @@
 {
   "ET00502829": {
     "shows": {
-      "UMSE|37169|20260823|PLATINUM": {
+      "UMSE|37200|20260824|PLATINUM": {
         "venue": "UGM Cinemas: Ettumanoor",
         "time": "01:30 PM",
-        "date": "20260823",
+        "date": "20260824",
         "cat": "PLATINUM",
         "price": "250.00",
-        "status": "0"
+        "status": "1"
       },
-      "UMSE|37169|20260823|GOLD": {
+      "UMSE|37200|20260824|GOLD": {
         "venue": "UGM Cinemas: Ettumanoor",
         "time": "01:30 PM",
-        "date": "20260823",
+        "date": "20260824",
         "cat": "GOLD",
         "price": "150.00",
-        "status": "1"
+        "status": "2"
       },
-      "UMSE|37164|20260823|PLATINUM": {
+      "UMSE|37201|20260824|PLATINUM": {
         "venue": "UGM Cinemas: Ettumanoor",
         "time": "04:45 PM",
-        "date": "20260823",
+        "date": "20260824",
         "cat": "PLATINUM",
         "price": "250.00",
-        "status": "0"
+        "status": "1"
       },
-      "UMSE|37164|20260823|GOLD": {
+      "UMSE|37201|20260824|GOLD": {
         "venue": "UGM Cinemas: Ettumanoor",
         "time": "04:45 PM",
-        "date": "20260823",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "1"
-      },
-      "UMSE|37162|20260823|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "08:15 PM",
-        "date": "20260823",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "0"
-      },
-      "UMSE|37162|20260823|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "08:15 PM",
-        "date": "20260823",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "1"
-      },
-      "UMSE|37194|20260823|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "10:00 PM",
-        "date": "20260823",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "1"
-      },
-      "UMSE|37194|20260823|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "10:00 PM",
-        "date": "20260823",
+        "date": "20260824",
         "cat": "GOLD",
         "price": "150.00",
         "status": "2"
       },
-      "UMSE|37210|20260823|PLATINUM": {
+      "UMSE|37202|20260824|PLATINUM": {
+        "venue": "UGM Cinemas: Ettumanoor",
+        "time": "08:00 PM",
+        "date": "20260824",
+        "cat": "PLATINUM",
+        "price": "250.00",
+        "status": "0"
+      },
+      "UMSE|37202|20260824|GOLD": {
+        "venue": "UGM Cinemas: Ettumanoor",
+        "time": "08:00 PM",
+        "date": "20260824",
+        "cat": "GOLD",
+        "price": "150.00",
+        "status": "1"
+      },
+      "UMSE|37203|20260824|PLATINUM": {
         "venue": "UGM Cinemas: Ettumanoor",
         "time": "11:15 PM",
-        "date": "20260823",
+        "date": "20260824",
         "cat": "PLATINUM",
         "price": "250.00",
-        "status": "0"
+        "status": "2"
       },
-      "UMSE|37210|20260823|GOLD": {
+      "UMSE|37203|20260824|GOLD": {
         "venue": "UGM Cinemas: Ettumanoor",
         "time": "11:15 PM",
-        "date": "20260823",
+        "date": "20260824",
         "cat": "GOLD",
         "price": "150.00",
-        "status": "2"
-      },
-      "UMSE|37166|20260823|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "11:30 PM",
-        "date": "20260823",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "0"
-      },
-      "UMSE|37166|20260823|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "11:30 PM",
-        "date": "20260823",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "2"
+        "status": "3"
       }
     },
     "dates": {
@@ -104,8 +72,10 @@
       "20260825": "AVAILABLE",
       "20260826": "AVAILABLE",
       "20260827": "AVAILABLE",
-      "20260828": "NOT_OPEN",
-      "20260829": "NOT_OPEN"
+      "20260828": "AVAILABLE",
+      "20260829": "AVAILABLE",
+      "20260830": "AVAILABLE",
+      "20260831": "AVAILABLE"
     }
   },
   "ET00378770": {
