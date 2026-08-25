@@ -87,7 +87,7 @@
         "date": "20260827",
         "cat": "PLATINUM",
         "price": "250.00",
-        "status": "1"
+        "status": "0"
       },
       "UMSE|37238|20260827|GOLD": {
         "venue": "UGM Cinemas: Ettumanoor",
@@ -269,54 +269,6 @@
         "venue": "UGM Cinemas: Ettumanoor",
         "time": "11:15 PM",
         "date": "20260829",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "UMSE|37264|20260830|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "02:30 PM",
-        "date": "20260830",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "2"
-      },
-      "UMSE|37264|20260830|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "02:30 PM",
-        "date": "20260830",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "UMSE|37265|20260830|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "06:00 PM",
-        "date": "20260830",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "1"
-      },
-      "UMSE|37265|20260830|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "06:00 PM",
-        "date": "20260830",
-        "cat": "GOLD",
-        "price": "150.00",
-        "status": "3"
-      },
-      "UMSE|37266|20260830|PLATINUM": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "09:30 PM",
-        "date": "20260830",
-        "cat": "PLATINUM",
-        "price": "250.00",
-        "status": "3"
-      },
-      "UMSE|37266|20260830|GOLD": {
-        "venue": "UGM Cinemas: Ettumanoor",
-        "time": "09:30 PM",
-        "date": "20260830",
         "cat": "GOLD",
         "price": "150.00",
         "status": "3"
